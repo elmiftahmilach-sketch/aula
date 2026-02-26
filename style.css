@@ -1,0 +1,54 @@
+*{box-sizing:border-box}
+:root{--bg:#0b1020;--card:#111933;--text:#e6e9ef;--muted:#9aa3b2;--pri:#2563eb;--pri2:#1d4ed8;--err:#dc2626}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Arial,sans-serif}
+header{padding:14px 16px;border-bottom:1px solid #22315d;background:linear-gradient(120deg,#0b1020,#142043 60%,#1b2b5c);display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:56px;height:56px;border-radius:8px;border:1px solid #22315d;background:#0f1730;object-fit:cover}
+.header-actions{display:flex;gap:8px}
+main{padding:16px;display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:1200px){main{grid-template-columns:1fr 1fr}}
+.form-section,.list-section{background:var(--card);border:1px solid #22315d;border-radius:12px;padding:16px}
+.grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.grid .full{grid-column:1/-1}
+.grid label{display:flex;flex-direction:column;gap:6px}
+.grid label span{font-size:12px;color:var(--muted)}
+.grid input,.grid select,.grid textarea{padding:10px;border-radius:8px;border:1px solid #2a3a6b;background:#0f1730;color:var(--text)}
+.actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+button{background:var(--pri);border:none;color:white;padding:10px 14px;border-radius:8px;cursor:pointer}
+button:hover{background:var(--pri2)}
+button.secondary{background:transparent;border:1px solid #2a3a6b;color:var(--text)}
+.msg{margin-top:8px;padding:8px 10px;border-radius:8px;background:#10223f;border:1px solid #2a3a6b}
+.msg.error{border-color:var(--err);color:#fecaca;background:#3b0d0d}
+.table-wrap{overflow:auto;border:1px solid #22315d;border-radius:8px}
+th,td{padding:8px 10px;border-bottom:1px solid #22315d;font-size:13px;white-space:nowrap}
+th{background:#0f1730;position:sticky;top:0}
+.badge{padding:2px 8px;border-radius:999px;font-size:12px;display:inline-block}
+.badge.success{background:rgba(22,163,74,.15);color:#86efac;border:1px solid #14532d}
+.badge.warning{background:rgba(245,158,11,.15);color:#fde68a;border:1px solid #874d0e}
+.badge.danger{background:rgba(220,38,38,.15);color:#fecaca;border:1px solid #7f1d1d}
+footer{padding:12px 16px;color:var(--muted);text-align:center}
+.toast{position:fixed;right:16px;bottom:16px;background:#0f1730;border:1px solid #2a3a6b;color:#e6e9ef;padding:10px 14px;border-radius:10px}
+.hidden{display:none}
+.input-error{border-color:var(--err)!important}
+.attach{border:1px dashed #2a3a6b;padding:10px;border-radius:8px;background:#101a33}
+.surat-info{font-size:12px;color:#9aa3b2;margin-top:6px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;border:1px solid #2a3a6b;background:#0f1730;color:#e6e9ef;text-decoration:none}
+.link-btn:hover{background:#162448}
+
+/* Checkbox + Lainnya */
+.checkbox-group{display:grid;grid-template-columns:1fr;gap:6px 16px;padding:8px 10px;border:1px solid #2a3a6b;border-radius:8px;background:#0f1730}
+.checkbox-group label{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)}
+.checkbox-group input[type="checkbox"]{transform:scale(1.1)}
+.lainnya-row{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px;margin-top:4px}
+.lainnya-input{padding:8px 10px;border:1px solid #2a3a6b;border-radius:6px;background:#0f1730;color:var(--text)}
+.lainnya-input:disabled{opacity:.6;cursor:not-allowed}
+@media(min-width:900px){.checkbox-group{grid-template-columns:1fr 1fr}.lainnya-row{grid-column:1/-1}}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center}
+.modal:not(.hidden){display:flex}
+.modal-content{background:var(--card);border:1px solid #22315d;border-radius:12px;max-width:720px;width:100%;padding:16px}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.logo-preview{margin-top:8px;display:flex;justify-content:center}
+.logo-preview img{max-height:120px;border:1px solid #22315d;border-radius:8px;background:#0f1730}
+#ttdCanvas{background:#fff;border:2px dashed #2a3a6b;border-radius:8px;touch-action:none}
