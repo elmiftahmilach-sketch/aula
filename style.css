@@ -87,13 +87,6 @@ header p {
   color: var(--muted);
   max-width: 560px;
 }
-.header-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-}
 main {
   padding: 0 20px 28px;
   display: grid;
@@ -152,6 +145,16 @@ main {
   font-weight: 600;
   min-width: 140px;
   border: 1px solid rgba(91, 141, 239, 0.12);
+}
+.alarm-actions .header-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  justify-content: stretch;
+}
+.alarm-actions .header-actions button {
+  width: 100%;
+  min-width: 0;
 }
 .form-section h2,
 .list-section h2 {
