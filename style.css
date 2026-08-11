@@ -1,17 +1,16 @@
 :root {
   --bg: #edf5ff;
-  --surface: #ffffff;
-  --surface-2: #f3f7ff;
-  --text: #1e2a3a;
-  --muted: #5f6f8d;
-  --primary: #5b8def;
-  --primary-strong: #2f6ae5;
-  --primary-soft: #ecf4ff;
-  --accent: #7ec8ff;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-strong: #ffffff;
+  --text: #1d2a3c;
+  --muted: #60718f;
+  --primary: #5a8ef5;
+  --primary-strong: #3d73ea;
+  --accent: #83d2ff;
   --success: #22c55e;
   --danger: #ef4444;
-  --border: #dfe9ff;
-  --shadow-soft: 0 18px 45px rgba(120, 141, 196, 0.18);
+  --border: #dbe7ff;
+  --shadow-soft: 0 20px 48px rgba(113, 136, 190, 0.18);
 }
 * {
   box-sizing: border-box;
@@ -22,10 +21,9 @@ body {
   min-height: 100%;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(127, 177, 255, 0.4), transparent 28%),
-    radial-gradient(circle at top right, rgba(178, 206, 255, 0.45), transparent 32%),
-    radial-gradient(circle at bottom left, rgba(156, 220, 255, 0.38), transparent 30%),
-    linear-gradient(180deg, #f8fbff 0%, #edf5ff 34%, #eef6ff 100%);
+    radial-gradient(circle at top left, rgba(122, 166, 255, 0.34), transparent 24%),
+    radial-gradient(circle at top right, rgba(153, 218, 255, 0.28), transparent 30%),
+    linear-gradient(180deg, #f7fbff 0%, #edf5ff 42%, #ebf4ff 100%);
   color: var(--text);
 }
 body {
@@ -37,97 +35,163 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0));
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
 }
 button,
 input,
 textarea {
   font: inherit;
 }
-header {
-  padding: 24px 20px;
+.app-shell {
+  max-width: 1460px;
+  margin: 26px auto;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
+  grid-template-columns: 290px minmax(0, 1fr);
+  background: rgba(255,255,255,0.28);
+  border: 1px solid rgba(161, 183, 255, 0.24);
+  border-radius: 30px;
+  box-shadow: 0 24px 60px rgba(117, 140, 194, 0.18);
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-header h1 {
+.sidebar {
+  background: linear-gradient(180deg, rgba(237,245,255,0.95), rgba(221,233,255,0.9));
+  border-right: 1px solid rgba(160, 180, 255, 0.2);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 10px;
+}
+.brand-block h1 {
   margin: 0;
-  font-size: clamp(1.75rem, 2.2vw, 2.5rem);
+  font-size: 1.7rem;
+  letter-spacing: -0.05em;
+}
+.brand-label,
+.eyebrow,
+.card-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.sidebar-card {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(140, 165, 240, 0.18);
+  border-radius: 20px;
+  padding: 18px 16px;
+}
+.sidebar-card.small p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.content-panel {
+  background: rgba(245, 249, 255, 0.74);
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 26px 28px 18px;
+  border-bottom: 1px solid rgba(154, 182, 255, 0.18);
+}
+.topbar h2 {
+  margin: 8px 0 0;
+  font-size: clamp(1.5rem, 2vw, 2rem);
   letter-spacing: -0.04em;
 }
 .header-brand {
   display: flex;
   align-items: center;
   gap: 18px;
+  padding: 6px 0;
 }
 .header-logo {
   width: 72px;
   height: 72px;
   object-fit: contain;
   border-radius: 18px;
-  border: 1px solid rgba(124, 156, 255, 0.22);
-  background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(220,232,255,0.8));
-  box-shadow: 0 10px 22px rgba(118, 145, 214, 0.12);
-}
-header > div:first-child {
-  max-width: 680px;
+  border: 1px solid rgba(130, 156, 232, 0.2);
+  background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(220,232,255,0.8));
+  box-shadow: 0 12px 26px rgba(118, 142, 215, 0.12);
 }
 .header-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 10px;
 }
 .header-actions button {
-  min-width: 140px;
+  min-width: 150px;
 }
-header p {
-  margin: 10px 0 0;
-  color: var(--muted);
-  max-width: 560px;
+.header-actions.stacked {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  justify-content: stretch;
+}
+.header-actions.stacked button {
+  width: 100%;
+  min-width: 0;
 }
 main {
-  padding: 0 20px 28px;
+  padding: 22px 28px 28px;
   display: grid;
-  gap: 20px;
-  max-width: 1160px;
+  gap: 22px;
+  max-width: none;
   margin: 0 auto;
 }
 .hero {
   display: grid;
-  gap: 16px;
-  grid-template-columns: 1.5fr 1fr;
+  gap: 18px;
+  grid-template-columns: 1.55fr 1fr;
 }
 .clock-card,
 .form-section,
-.list-section {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(145, 170, 255, 0.25);
-  border-radius: 22px;
+.list-section,
+.mini-panel {
+  background: var(--surface);
+  border: 1px solid rgba(149, 174, 255, 0.28);
+  border-radius: 24px;
   padding: 24px;
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .clock-card {
   display: grid;
   gap: 12px;
+  min-height: 250px;
+  justify-content: center;
 }
 .clock-label {
   color: var(--muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 #currentTime {
-  font-size: clamp(2.25rem, 4vw, 4rem);
-  letter-spacing: 0.05em;
-  color: #20375f;
+  font-size: clamp(2.5rem, 4vw, 4.2rem);
+  letter-spacing: 0.04em;
+  color: #233b66;
+  font-weight: 700;
 }
 #currentDate,
 #nextBell {
   color: var(--muted);
+  font-size: 1.02rem;
 }
 .alarm-actions {
   display: grid;
@@ -138,13 +202,70 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 18px;
-  border-radius: 999px;
+  padding: 15px 18px;
+  border-radius: 18px;
   background: linear-gradient(135deg, rgba(91, 141, 239, 0.12), rgba(126, 200, 255, 0.18));
   color: var(--text);
-  font-weight: 600;
-  min-width: 140px;
+  font-weight: 700;
+  min-width: 180px;
   border: 1px solid rgba(91, 141, 239, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.form-section h2,
+.list-section h2 {
+  margin-top: 0;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grid label span {
+  font-size: 0.96rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+input[type='time'],
+input[type='text'],
+input[type='file'] {
+  width: 100%;
+  min-height: 50px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #d7e4ff;
+  background: rgba(249, 252, 255, 0.96);
+  color: var(--text);
+  box-shadow: inset 0 1px 2px rgba(71, 97, 156, 0.04);
+}
+input[type='time']::-webkit-calendar-picker-indicator {
+  filter: contrast(0.75) saturate(1.3);
+}
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.day-grid label {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(114, 142, 219, 0.2);
+  border-radius: 12px;
+  padding: 11px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--text);
+}
+.day-grid input {
+  accent-color: var(--primary);
 }
 .alarm-actions .header-actions {
   display: grid;
@@ -233,20 +354,20 @@ button {
   border-radius: 14px;
   padding: 14px 20px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 750;
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   color: white;
-  box-shadow: 0 12px 24px rgba(91, 141, 239, 0.25);
+  box-shadow: 0 12px 24px rgba(91, 141, 239, 0.22);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 24px rgba(91, 141, 239, 0.32);
+  box-shadow: 0 14px 26px rgba(91, 141, 239, 0.28);
   filter: brightness(1.02);
 }
 button.secondary {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(118, 149, 220, 0.18);
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(119,149,220,0.2);
   color: var(--text);
   box-shadow: none;
 }
@@ -254,19 +375,20 @@ button.secondary {
   margin-top: 14px;
   padding: 14px 16px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(236, 244, 255, 0.9), rgba(230, 241, 255, 0.8));
-  border: 1px solid rgba(118, 149, 220, 0.18);
-  color: #27406b;
+  background: linear-gradient(135deg, rgba(237, 245, 255, 0.94), rgba(231, 239, 255, 0.86));
+  border: 1px solid rgba(119,149,220,0.2);
+  color: #29406f;
 }
 .msg.error {
-  border: 1px solid rgba(239, 68, 68, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.22);
   color: #8f2d2d;
-  background: rgba(255, 244, 244, 0.9);
+  background: rgba(255,244,244,0.92);
 }
 .table-wrap {
   overflow: auto;
   border-radius: 18px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(137, 164, 236, 0.18);
+  background: rgba(255,255,255,0.38);
 }
 table {
   width: 100%;
@@ -275,13 +397,14 @@ table {
 th,
 td {
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(120, 149, 220, 0.12);
+  border-bottom: 1px solid rgba(120,149,220,0.12);
   text-align: left;
   color: var(--text);
 }
 th {
-  background: linear-gradient(180deg, rgba(233, 242, 255, 0.95), rgba(220, 233, 255, 0.9));
+  background: linear-gradient(180deg, rgba(234,241,255,0.98), rgba(220,233,255,0.92));
   font-size: 0.95rem;
+  font-weight: 700;
 }
 tr:last-child td {
   border-bottom: none;
@@ -293,10 +416,10 @@ tr:last-child td {
 }
 .action-btns button {
   padding: 10px 12px;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
 }
 footer {
-  padding: 14px 20px 24px;
+  padding: 14px 20px 28px;
   color: var(--muted);
   text-align: center;
 }
@@ -306,8 +429,8 @@ footer {
   bottom: 20px;
   padding: 14px 18px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.84);
-  border: 1px solid rgba(118, 149, 220, 0.18);
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(119,149,220,0.18);
   box-shadow: 0 15px 35px rgba(94, 118, 180, 0.18);
   color: var(--text);
   opacity: 0;

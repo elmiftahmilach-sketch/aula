@@ -2,9 +2,12 @@
   "name": "bel-sekolah-online",
   "version": "1.0.0",
   "description": "Aplikasi bel sekolah online untuk jadwal pelajaran dan istirahat",
-  "main": "server.js",
+  "main": "desktop.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "desktop": "electron .",
+    "dev:desktop": "electron .",
+    "build": "electron-builder --win"
   },
   "keywords": [
     "alarm",
@@ -15,5 +18,42 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.aula.belsekolah",
+    "productName": "Bel Sekolah",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!**/.git/**",
+      "!dist/**",
+      "!README.md"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "SMA DTBS.png",
+      "sign": false,
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "SMA DTBS.png",
+      "uninstallerIcon": "SMA DTBS.png",
+      "shortcutName": "Bel Sekolah"
+    }
   }
 }

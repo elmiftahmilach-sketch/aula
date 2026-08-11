@@ -7,86 +7,113 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="header-brand">
-      <img src="SMA DTBS.png" alt="Logo SMA DTBS" class="header-logo" />
-      <div>
-        <h1>Bel Sekolah</h1>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <img src="SMA DTBS.png" alt="Logo SMA DTBS" class="header-logo" />
+        <div>
+          <div class="brand-label">SMA DTBS</div>
+          <h1>Bel Sekolah</h1>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="card-kicker">Status Sistem</div>
+        <div class="status-badge" id="alarmStatus">Nonaktif</div>
+      </div>
+
+      <div class="sidebar-card small">
+        <div class="card-kicker">Deskripsi</div>
         <p>Atur jadwal bel otomatis untuk awal pelajaran, istirahat, dan pulang sekolah.</p>
       </div>
-    </div>
-  </header>
+    </aside>
 
-  <main>
-    <section class="hero">
-      <div class="clock-card">
-        <div class="clock-label">Waktu Sekarang</div>
-        <div id="currentTime">--:--:--</div>
-        <div id="currentDate">---</div>
-        <div id="nextBell">Selanjutnya: Tidak ada jadwal aktif</div>
-      </div>
-      <div class="alarm-actions">
-        <div class="status-badge" id="alarmStatus">Nonaktif</div>
-        <button id="toggleAlarm">Aktifkan Alarm</button>
+    <div class="content-panel">
+      <header class="topbar">
+        <div class="header-brand">
+          <div>
+            <div class="eyebrow">Dashboard Operasi</div>
+            <h2>Pengaturan Jadwal Bel</h2>
+          </div>
+        </div>
         <div class="header-actions">
-          <button id="playDemo" class="secondary">Uji Suara Bel</button>
-          <button id="presetSchedule" class="secondary">Isi Jadwal Belajar</button>
-          <button id="requestNotif" class="secondary">Aktifkan Notif Desktop</button>
+          <button id="toggleAlarm">Aktifkan Alarm</button>
         </div>
-      </div>
-    </section>
+      </header>
 
-    <section class="form-section">
-      <h2>Tambah / Edit Jadwal Bel</h2>
-      <form id="bellForm">
-        <div class="grid">
-          <label><span>Waktu Bel</span><input type="time" id="bellTime" required /></label>
-          <label><span>Nama Kegiatan</span><input type="text" id="bellLabel" required placeholder="Contoh: Bel Awal Pelajaran" /></label>
-          <label class="full"><span>Hari</span>
-            <div class="day-grid" id="daySelectors"></div>
-          </label>
-          <label class="full"><span>Audio / Video Kustom</span>
-            <div class="sound-input">
-              <input type="file" id="bellSoundFile" accept="audio/*,video/*" />
-              <button type="button" id="clearSound" class="secondary">Reset File</button>
+      <main>
+        <section class="hero">
+          <div class="clock-card">
+            <div class="clock-label">Waktu Sekarang</div>
+            <div id="currentTime">--:--:--</div>
+            <div id="currentDate">---</div>
+            <div id="nextBell">Selanjutnya: Tidak ada jadwal aktif</div>
+          </div>
+          <div class="alarm-actions">
+            <div class="mini-panel">
+              <div class="card-kicker">Kontrol Cepat</div>
+              <div class="header-actions stacked">
+                <button id="playDemo" class="secondary">Uji Suara Bel</button>
+                <button id="presetSchedule" class="secondary">Isi Jadwal Belajar</button>
+                <button id="requestNotif" class="secondary">Aktifkan Notif Desktop</button>
+              </div>
             </div>
-            <div id="soundName" class="sound-name">Menggunakan suara default</div>
-          </label>
-        </div>
-        <div class="actions">
-          <button type="submit">Simpan Jadwal</button>
-          <button type="button" id="resetForm" class="secondary">Batal</button>
-        </div>
-        <input type="hidden" id="editId" />
-      </form>
-      <div id="message" class="msg hidden"></div>
-    </section>
+          </div>
+        </section>
 
-    <section class="list-section">
-      <div class="list-header">
-        <h2>Daftar Jadwal Bel</h2>
-        <button id="clearAll" class="secondary">Hapus Semua Jadwal</button>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Waktu</th>
-              <th>Kegiatan</th>
-              <th>Hari</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="scheduleList"></tbody>
-        </table>
-      </div>
-    </section>
-  </main>
+        <section class="form-section">
+          <h2>Tambah / Edit Jadwal Bel</h2>
+          <form id="bellForm">
+            <div class="grid">
+              <label><span>Waktu Bel</span><input type="time" id="bellTime" required /></label>
+              <label><span>Nama Kegiatan</span><input type="text" id="bellLabel" required placeholder="Contoh: Bel Awal Pelajaran" /></label>
+              <label class="full"><span>Hari</span>
+                <div class="day-grid" id="daySelectors"></div>
+              </label>
+              <label class="full"><span>Audio / Video Kustom</span>
+                <div class="sound-input">
+                  <input type="file" id="bellSoundFile" accept="audio/*,video/*" />
+                  <button type="button" id="clearSound" class="secondary">Reset File</button>
+                </div>
+                <div id="soundName" class="sound-name">Menggunakan suara default</div>
+              </label>
+            </div>
+            <div class="actions">
+              <button type="submit">Simpan Jadwal</button>
+              <button type="button" id="resetForm" class="secondary">Batal</button>
+            </div>
+            <input type="hidden" id="editId" />
+          </form>
+          <div id="message" class="msg hidden"></div>
+        </section>
 
-  <footer>
-    <small>Data tersimpan di perangkat Anda. Buka aplikasi ini di browser agar bel bisa berbunyi otomatis.</small>
-  </footer>
+        <section class="list-section">
+          <div class="list-header">
+            <h2>Daftar Jadwal Bel</h2>
+            <button id="clearAll" class="secondary">Hapus Semua Jadwal</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Waktu</th>
+                  <th>Kegiatan</th>
+                  <th>Hari</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleList"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <small>Data tersimpan di perangkat Anda. Buka aplikasi ini di browser agar bel bisa berbunyi otomatis.</small>
+      </footer>
+    </div>
+  </div>
 
   <video id="customMedia" preload="auto" style="display:none"></video>
   <div id="toast" class="toast hidden">Berhasil.</div>

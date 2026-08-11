@@ -1,11 +1,14 @@
 const STORAGE_KEY = 'school_bell_schedule_v1';
 const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+const weekdayNames = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 const currentTimeEl = document.getElementById('currentTime');
 const currentDateEl = document.getElementById('currentDate');
 const nextBellEl = document.getElementById('nextBell');
 const alarmStatusEl = document.getElementById('alarmStatus');
 const toggleAlarmBtn = document.getElementById('toggleAlarm');
 const playDemoBtn = document.getElementById('playDemo');
+const presetScheduleBtn = document.getElementById('presetSchedule');
+const requestNotifBtn = document.getElementById('requestNotif');
 const bellForm = document.getElementById('bellForm');
 const bellTimeInput = document.getElementById('bellTime');
 const bellLabelInput = document.getElementById('bellLabel');
@@ -239,7 +242,59 @@ function playBellSound() {
 function triggerBell(item) {
   const label = item.label || 'Bel sekolah';
   showToast(`Bunyi bel: ${label}`);
+
+  if ('Notification' in window && Notification.permission === 'granted') {
+    new Notification('Bel Sekolah', { body: label });
+  }
+
   playBellSound();
+}
+
+function applyPresetSchedule() {
+  const preset = [
+    { time: '06:45', label: 'Persiapan Siswa', days: weekdayNames },
+    { time: '07:00', label: 'Bel Masuk', days: weekdayNames },
+    { time: '08:30', label: 'Istirahat 1', days: weekdayNames },
+    { time: '09:15', label: 'Pelajaran Lanjut', days: weekdayNames },
+    { time: '10:30', label: 'Istirahat 2', days: weekdayNames },
+    { time: '11:00', label: 'Pelajaran Siang', days: weekdayNames },
+    { time: '12:00', label: 'Istirahat Siang', days: weekdayNames },
+    { time: '12:30', label: 'Bel Pulang', days: weekdayNames },
+    { time: '06:45', label: 'Jam Masuk Hari Sekolah', days: ['Sabtu'] },
+    { time: '12:00', label: 'Jam Pulang Hari Sabtu', days: ['Sabtu'] }
+  ];
+
+  schedules = preset.map((entry) => ({
+    id: crypto.randomUUID(),
+    time: entry.time,
+    label: entry.label,
+    days: entry.days,
+  }));
+
+  saveSchedules();
+  renderSchedule();
+  resetForm();
+  updateNextBell();
+  showToast('Preset jadwal sekolah diterapkan');
+}
+
+function requestDesktopNotification() {
+  if (!('Notification' in window)) {
+    showToast('Browser tidak mendukung notifikasi desktop');
+    return;
+  }
+
+  Notification.requestPermission().then((permission) => {
+    if (permission === 'granted') {
+      showToast('Notifikasi desktop aktif');
+      new Notification('Bel Sekolah', { body: 'Notifikasi desktop sudah aktif.' });
+      return;
+    }
+
+    showToast('Notifikasi desktop ditolak');
+  }).catch(() => {
+    showToast('Gagal mengaktifkan notifikasi desktop');
+  });
 }
 
 function checkAlarms() {
@@ -369,6 +424,8 @@ async function init() {
     playBellSound();
     showToast('Uji suara bel berhasil');
   });
+  presetScheduleBtn.addEventListener('click', applyPresetSchedule);
+  requestNotifBtn.addEventListener('click', requestDesktopNotification);
   bellSoundFile.addEventListener('change', handleSoundFileSelect);
   clearSoundBtn.addEventListener('click', () => setCustomMedia(null));
   bellForm.addEventListener('submit', submitForm);
